@@ -1,4 +1,3 @@
-# evaluate_model.py
 import csv
 import re
 
@@ -42,7 +41,6 @@ def calculate_accuracy(true_labels, predicted_labels):
         min_len = min(len(true_labels), len(predicted_labels))
         true_labels = true_labels[:min_len]
         predicted_labels = predicted_labels[:min_len]
-    
     correct = sum(t == p for t, p in zip(true_labels, predicted_labels))
     accuracy = (correct / len(true_labels)) * 100
     return accuracy
@@ -50,11 +48,7 @@ def calculate_accuracy(true_labels, predicted_labels):
 def main():
     true_labels = load_test_labels()
     texts, predicted_labels = load_predicted_labels()
-    
     accuracy = calculate_accuracy(true_labels, predicted_labels)
-    print(f"Model Accuracy: {accuracy:.2f}%")
-    
-    # Identify and print misclassified blocks
     print("\nMisclassified Blocks:")
     block_types = ['Header', 'Body', 'Footer', 'Quote']
     misclassified = False
@@ -65,10 +59,9 @@ def main():
             print(f"Correct Label: {block_types[true]}")
             print(f"Predicted Label: {block_types[pred]}")
             print(f"Text: {text}")
-    
+    print(f"Model Accuracy: {accuracy:.2f}%")
     if not misclassified:
         print("None. All blocks were classified correctly.")
 
 if __name__ == "__main__":
     main()
-
