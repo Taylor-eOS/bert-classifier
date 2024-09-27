@@ -17,16 +17,13 @@ def extract_features(pdf_path, test_csv='test.csv', output_txt='text_labels.txt'
                 texts.append(text)
                 labels.append(int(label))
         return texts, labels
-
     print("Extracting text blocks from PDF and reading labels from CSV...")
     doc = fitz.open(pdf_path)
     texts = []
     labels = []
-
     with open(test_csv, 'r', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         label_list = [row[0] for row in reader]
-
     label_index = 0
     for page_num in range(len(doc)):
         page = doc.load_page(page_num)
@@ -41,14 +38,11 @@ def extract_features(pdf_path, test_csv='test.csv', output_txt='text_labels.txt'
                 texts.append(sanitized_text)
                 labels.append(label)
                 label_index += 1
-
     if label_index != len(label_list):
         raise ValueError("Number of labels in test.csv does not match the number of text blocks extracted.")
-
     with open(output_txt, 'w', encoding='utf-8') as f:
         for text, label in zip(texts, labels):
             f.write(f"{text}|||{label}\n")
-
     return texts, labels
 
 if __name__ == "__main__":
