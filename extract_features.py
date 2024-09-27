@@ -1,7 +1,6 @@
-# extract_features.py
 import os
 import csv
-import fitz  # PyMuPDF
+import fitz
 
 def extract_features(pdf_path, test_csv='test.csv', output_txt='text_labels.txt'):
     if os.path.exists(output_txt):
