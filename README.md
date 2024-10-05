@@ -1,1 +1,1 @@
-This project uses DistilBERT to train and predict what types (header, body, footer, quote) text blocks are. It is currently not very good at predictions.
+This is a learning project that uses DistilBERT to train and predict what type of text blocks in a PDF are (header, body, footer, quote). It used to make predictions in the vacinity of 97% correct, but I added other neighboring blocks as context and now the model doesn't know what to focus on and predictions are very bad.
